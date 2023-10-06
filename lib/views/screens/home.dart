@@ -5,6 +5,7 @@ import 'package:flutter_food_app/models/products-filter-category.dart';
 import 'package:flutter_food_app/service/categories.dart';
 import 'package:flutter_food_app/service/product-search.dart';
 import 'package:flutter_food_app/service/products-filter-category.dart';
+import 'package:flutter_food_app/views/screens/detail.dart';
 import 'package:flutter_food_app/views/widgets/navbar.dart';
 import 'package:flutter_food_app/views/widgets/product-category.dart';
 import 'package:flutter_food_app/views/widgets/product-list-card.dart';
@@ -98,11 +99,11 @@ class _HomeState extends State<Home> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 12),
               child: SizedBox(
                 width: double.infinity,
                 child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 20),
+                  margin: const EdgeInsets.symmetric(vertical: 20),
                   child: const Text(
                     'Explore Categories',
                     style: TextStyle(
@@ -135,8 +136,15 @@ class _HomeState extends State<Home> {
                 scrollDirection: Axis.horizontal,
                 children: _productsCat.map(
                   (product) {
-                    return GestureDetector(
-                      onTap: () {},
+                    return InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetailProduct(idMeal: product.idMeal),
+                          ),
+                        );
+                      },
                       child: ProductReceomendedCard(product: product),
                     );
                   },
@@ -181,7 +189,14 @@ class _HomeState extends State<Home> {
                         children: _topRated.map(
                           (product) {
                             return GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        DetailProduct(idMeal: product.idMeal),
+                                  ),
+                                );
+                              },
                               child: ProductTopRated(product: product),
                             );
                           },
@@ -198,7 +213,14 @@ class _HomeState extends State<Home> {
                 children: _products.map(
                   (product) {
                     return GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DetailProduct(idMeal: product.idMeal),
+                          ),
+                        );
+                      },
                       child: ProductListCard(product: product),
                     );
                   },

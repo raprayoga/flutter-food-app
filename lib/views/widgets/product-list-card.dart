@@ -10,7 +10,7 @@ class ProductListCard extends StatelessWidget {
     return Card(
       shadowColor: Colors.white70,
       child: Padding(
-        padding: EdgeInsets.all(7),
+        padding: const EdgeInsets.all(7),
         child: Row(
           children: [
             Expanded(

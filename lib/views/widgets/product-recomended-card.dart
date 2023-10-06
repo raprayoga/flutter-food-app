@@ -14,7 +14,7 @@ class ProductReceomendedCard extends StatelessWidget {
         ),
       ),
       child: Container(
-        padding: EdgeInsets.all(5),
+        padding: const EdgeInsets.all(5),
         width: 180,
         child: Column(
           children: [

@@ -27,7 +27,6 @@ class ProductSearchServices {
 
       for (var i = 1; i <= 20; i++) {
         if (item['strIngredient$i'] != '') {
-          print(item['strMeasure$i']);
           strIngredients.add(item['strIngredient$i']);
         }
         if (item['strMeasure$i'] != '') {
