@@ -13,7 +13,7 @@ class ProductTopRated extends StatelessWidget {
           Radius.circular(10),
         ),
       ),
-      child: Container(
+      child: SizedBox(
         width: 196,
         child: Stack(
           children: [

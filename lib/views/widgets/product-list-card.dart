@@ -23,7 +23,7 @@ class ProductListCard extends StatelessWidget {
             Expanded(
               flex: 4,
               child: Container(
-                margin: EdgeInsets.only(left: 10),
+                margin: const EdgeInsets.only(left: 10),
                 child: Column(
                   children: [
                     SizedBox(
@@ -40,7 +40,7 @@ class ProductListCard extends StatelessWidget {
                     Text(
                       product.strInstructions,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontSize: 10),
+                      style: const TextStyle(fontSize: 10),
                       textAlign: TextAlign.left,
                     ),
                   ],

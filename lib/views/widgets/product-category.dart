@@ -9,7 +9,7 @@ class ProductCategory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 5),
+      margin: const EdgeInsets.only(right: 5),
       child: Column(
         children: [
           ClipRRect(
@@ -19,11 +19,11 @@ class ProductCategory extends StatelessWidget {
               width: 50,
             ),
           ),
-          Container(
+          SizedBox(
             width: 60,
             child: Text(
               category.strCategory,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 10,
                   color: Colors.white,
                   fontWeight: FontWeight.bold),

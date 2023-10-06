@@ -33,7 +33,7 @@ class ProductReceomendedCard extends StatelessWidget {
               ],
             ),
             ClipRRect(
-              borderRadius: BorderRadius.all(
+              borderRadius: const BorderRadius.all(
                 Radius.circular(10.0),
               ),
               child: Image.network(
