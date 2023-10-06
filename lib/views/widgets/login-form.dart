@@ -25,8 +25,9 @@ class _LoginFormState extends State<LoginForm> {
             const SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 40),
-                  backgroundColor: Theme.of(context).colorScheme.primary),
+                minimumSize: const Size(double.infinity, 40),
+                backgroundColor: Theme.of(context).colorScheme.primary,
+              ),
               child: const Text('Login', style: TextStyle(color: Colors.white)),
               onPressed: () {},
             ),

@@ -12,15 +12,14 @@ class _NavbarState extends State<Navbar> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_bag), label: 'cart'),
-          BottomNavigationBarItem(icon: Icon(Icons.history), label: 'history'),
-        ],
-      ),
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
+        BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'favorite'),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle), label: 'account'),
+      ],
     );
   }
 }

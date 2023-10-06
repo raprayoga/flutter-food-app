@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_food_app/views/screens/auth.dart';
+import 'package:flutter_food_app/views/screens/home.dart';
 
 var kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 7, 7, 7),
@@ -17,11 +18,12 @@ class MainApp extends StatelessWidget {
       theme: ThemeData().copyWith(
         useMaterial3: true,
         colorScheme: kColorScheme,
-        appBarTheme: const AppBarTheme()
-            .copyWith(backgroundColor: kColorScheme.onPrimaryContainer),
+        appBarTheme: const AppBarTheme().copyWith(
+          backgroundColor: kColorScheme.onPrimaryContainer,
+        ),
         scaffoldBackgroundColor: kColorScheme.onPrimaryContainer,
       ),
-      home: const Auth(),
+      home: const Home(),
     );
   }
 }
