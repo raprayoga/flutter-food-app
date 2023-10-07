@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_food_app/views/screens/auth.dart';
-import 'package:flutter_food_app/views/screens/home.dart';
+import 'package:flutter_food_app/views/screens/main.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 var kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 7, 7, 7),
 );
 void main() {
-  runApp(const MainApp());
+  runApp(
+    const ProviderScope(
+      child: MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -20,10 +25,12 @@ class MainApp extends StatelessWidget {
         colorScheme: kColorScheme,
         appBarTheme: const AppBarTheme().copyWith(
           backgroundColor: kColorScheme.onPrimaryContainer,
+          titleTextStyle: const TextStyle(
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         ),
         scaffoldBackgroundColor: kColorScheme.onPrimaryContainer,
       ),
-      home: const Home(),
+      home: const Main(),
     );
   }
 }

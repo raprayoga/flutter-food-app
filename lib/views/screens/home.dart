@@ -7,7 +7,6 @@ import 'package:flutter_food_app/service/product-search.dart';
 import 'package:flutter_food_app/service/products-filter-category.dart';
 import 'package:flutter_food_app/views/screens/detail.dart';
 import 'package:flutter_food_app/views/screens/products-category.dart';
-import 'package:flutter_food_app/views/widgets/navbar.dart';
 import 'package:flutter_food_app/views/widgets/product-category.dart';
 import 'package:flutter_food_app/views/widgets/product-list-card.dart';
 import 'package:flutter_food_app/views/widgets/product-recomended-card.dart';
@@ -69,182 +68,172 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.menu_rounded, color: Colors.white),
-          onPressed: () {},
-        ),
-        actions: const [Icon(Icons.notifications, color: Colors.white)],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              child: TextField(
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20.0),
-                    ),
-                  ),
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                  filled: true,
-                  hintText: "Search food",
-                ),
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onBackground,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              child: SizedBox(
-                width: double.infinity,
-                child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 20),
-                  child: const Text(
-                    'Explore Categories',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.left,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12),
+            child: TextField(
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20.0),
                   ),
                 ),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                filled: true,
+                hintText: "Search food",
+              ),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onBackground,
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(bottom: 10, left: 10),
-              height: 65,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: _categories.map(
-                  (category) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => ProductsCategory(
-                              category: category.strCategory,
-                            ),
-                          ),
-                        );
-                      },
-                      child: ProductCategory(category: category),
-                    );
-                  },
-                ).toList(),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 10, top: 10, left: 10),
-              height: 280,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: _productsCat.map(
-                  (product) {
-                    return InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => DetailProduct(
-                              idMeal: product.idMeal,
-                            ),
-                          ),
-                        );
-                      },
-                      child: ProductReceomendedCard(product: product),
-                    );
-                  },
-                ).toList(),
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.red.withOpacity(0.4),
-                    Colors.red.withOpacity(0.8),
-                  ],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12),
+            child: SizedBox(
+              width: double.infinity,
+              child: Container(
+                margin: EdgeInsets.symmetric(vertical: 20),
+                child: const Text(
+                  'Explore Categories',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.left,
                 ),
               ),
-              margin: EdgeInsets.symmetric(vertical: 20),
-              height: 300,
-              padding: EdgeInsets.symmetric(vertical: 10),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 12),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: Container(
-                        margin: EdgeInsets.symmetric(vertical: 20),
-                        child: const Text(
-                          'Top-rated food',
-                          style: TextStyle(color: Colors.white, fontSize: 22),
-                          textAlign: TextAlign.left,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(bottom: 10, left: 10),
+            height: 65,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: _categories.map(
+                (category) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => ProductsCategory(
+                            category: category.strCategory,
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      margin: EdgeInsets.only(bottom: 10, left: 10),
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: _topRated.map(
-                          (product) {
-                            return GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => DetailProduct(
-                                      idMeal: product.idMeal,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: ProductTopRated(product: product),
-                            );
-                          },
-                        ).toList(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                      );
+                    },
+                    child: ProductCategory(category: category),
+                  );
+                },
+              ).toList(),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              child: Column(
-                children: _products.map(
-                  (product) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                DetailProduct(idMeal: product.idMeal),
+          ),
+          Container(
+            margin: EdgeInsets.only(bottom: 10, top: 10, left: 10),
+            height: 280,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: _productsCat.map(
+                (product) {
+                  return InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => DetailProduct(
+                            idMeal: product.idMeal,
                           ),
-                        );
-                      },
-                      child: ProductListCard(product: product),
-                    );
-                  },
-                ).toList(),
+                        ),
+                      );
+                    },
+                    child: ProductReceomendedCard(product: product),
+                  );
+                },
+              ).toList(),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.red.withOpacity(0.4),
+                  Colors.red.withOpacity(0.8),
+                ],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
               ),
             ),
-            const SizedBox(
-              height: 50,
-            )
-          ],
-        ),
+            margin: EdgeInsets.symmetric(vertical: 20),
+            height: 300,
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Container(
+                      margin: EdgeInsets.symmetric(vertical: 20),
+                      child: const Text(
+                        'Top-rated food',
+                        style: TextStyle(color: Colors.white, fontSize: 22),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: 10, left: 10),
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: _topRated.map(
+                        (product) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => DetailProduct(
+                                    idMeal: product.idMeal,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: ProductTopRated(product: product),
+                          );
+                        },
+                      ).toList(),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12),
+            child: Column(
+              children: _products.map(
+                (product) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailProduct(idMeal: product.idMeal),
+                        ),
+                      );
+                    },
+                    child: ProductListCard(product: product),
+                  );
+                },
+              ).toList(),
+            ),
+          ),
+          const SizedBox(
+            height: 50,
+          )
+        ],
       ),
-      bottomNavigationBar: Navbar(),
     );
   }
 }

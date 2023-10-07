@@ -35,9 +35,6 @@ class _ProductsCategoryState extends State<ProductsCategory> {
         title: Text(
           widget.category,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            color: Colors.white,
-          ),
         ),
         leading: IconButton(
           icon: const Icon(

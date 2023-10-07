@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Navbar extends StatefulWidget {
-  const Navbar({super.key});
-
-  @override
-  State<Navbar> createState() => _NavbarState();
-}
-
-class _NavbarState extends State<Navbar> {
-  int _selectedPageIndex = 0;
+class Navbar extends StatelessWidget {
+  const Navbar(
+      {super.key, required this.selectedIndex, required this.onItemTapped});
+  final int selectedIndex;
+  final Function(int value) onItemTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +16,10 @@ class _NavbarState extends State<Navbar> {
         BottomNavigationBarItem(
             icon: Icon(Icons.account_circle), label: 'account'),
       ],
+      currentIndex: selectedIndex,
+      onTap: (value) {
+        onItemTapped(value);
+      },
     );
   }
 }

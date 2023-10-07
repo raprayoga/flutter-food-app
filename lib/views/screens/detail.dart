@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_food_app/models/product-detail.dart';
+import 'package:flutter_food_app/provider/favorite.dart';
 import 'package:flutter_food_app/service/product-detail.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DetailProduct extends StatefulWidget {
+class DetailProduct extends ConsumerStatefulWidget {
   const DetailProduct({super.key, required this.idMeal});
   final String idMeal;
 
   @override
-  State<DetailProduct> createState() => _DetailProduct();
+  ConsumerState<DetailProduct> createState() => _DetailProduct();
 }
 
-class _DetailProduct extends State<DetailProduct> {
-  final bool isFavorite = false;
+class _DetailProduct extends ConsumerState<DetailProduct> {
   late ProductDetail? _product = null;
 
   @override
   void initState() {
     super.initState();
     _loadProduct();
+    ref.read(favoriteProvider.notifier).loadFavorite();
   }
 
   _loadProduct() async {
@@ -26,6 +28,23 @@ class _DetailProduct extends State<DetailProduct> {
     setState(() {
       _product = product;
     });
+  }
+
+  bool get _isFavorite {
+    final favorites = ref.watch(favoriteProvider);
+    var result =
+        favorites.indexWhere((favorite) => favorite.idMeal == widget.idMeal);
+    return result >= 0;
+  }
+
+  void toggleFavorite() {
+    if (_isFavorite) {
+      ref.read(favoriteProvider.notifier).deleteFavorite(widget.idMeal);
+    } else {
+      ref.read(favoriteProvider.notifier).addFavorite(
+          _product!.idMeal, _product!.strMeal, _product!.strMealThumb);
+    }
+    ref.read(favoriteProvider.notifier).loadFavorite();
   }
 
   @override
@@ -58,10 +77,12 @@ class _DetailProduct extends State<DetailProduct> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          toggleFavorite();
+        },
         child: ClipRRect(
           borderRadius: BorderRadius.circular(40),
-          child: Icon(isFavorite ? Icons.favorite : Icons.favorite_border,
+          child: Icon(_isFavorite ? Icons.favorite : Icons.favorite_border,
               color: Colors.red),
         ),
       ),
