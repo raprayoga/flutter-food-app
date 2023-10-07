@@ -42,6 +42,7 @@ class ProductListCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(fontSize: 10),
                       textAlign: TextAlign.left,
+                      maxLines: 3,
                     ),
                   ],
                 ),

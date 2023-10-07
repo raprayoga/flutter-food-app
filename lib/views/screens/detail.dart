@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_food_app/models/product-detail.dart';
 import 'package:flutter_food_app/service/product-detail.dart';
-import 'package:http/http.dart' as http;
 
 class DetailProduct extends StatefulWidget {
   const DetailProduct({super.key, required this.idMeal});
@@ -24,7 +21,6 @@ class _DetailProduct extends State<DetailProduct> {
   }
 
   _loadProduct() async {
-    print('LOAD PRODUCT');
     final service = ProductDetailServices(idMeal: widget.idMeal);
     final product = await service.loadProduct();
     setState(() {
@@ -36,12 +32,12 @@ class _DetailProduct extends State<DetailProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Detail Food',
           overflow: TextOverflow.ellipsis,
         ),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.white,
           ),
@@ -53,7 +49,7 @@ class _DetailProduct extends State<DetailProduct> {
       body: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           if (_product == null) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else {

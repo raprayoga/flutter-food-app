@@ -6,6 +6,7 @@ import 'package:flutter_food_app/service/categories.dart';
 import 'package:flutter_food_app/service/product-search.dart';
 import 'package:flutter_food_app/service/products-filter-category.dart';
 import 'package:flutter_food_app/views/screens/detail.dart';
+import 'package:flutter_food_app/views/screens/products-category.dart';
 import 'package:flutter_food_app/views/widgets/navbar.dart';
 import 'package:flutter_food_app/views/widgets/product-category.dart';
 import 'package:flutter_food_app/views/widgets/product-list-card.dart';
@@ -80,7 +81,7 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
+              padding: EdgeInsets.symmetric(horizontal: 12),
               child: TextField(
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
@@ -99,11 +100,11 @@ class _HomeState extends State<Home> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
+              padding: EdgeInsets.symmetric(horizontal: 12),
               child: SizedBox(
                 width: double.infinity,
                 child: Container(
-                  margin: const EdgeInsets.symmetric(vertical: 20),
+                  margin: EdgeInsets.symmetric(vertical: 20),
                   child: const Text(
                     'Explore Categories',
                     style: TextStyle(
@@ -115,14 +116,22 @@ class _HomeState extends State<Home> {
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(bottom: 10, left: 10),
+              margin: EdgeInsets.only(bottom: 10, left: 10),
               height: 65,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: _categories.map(
                   (category) {
                     return GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => ProductsCategory(
+                              category: category.strCategory,
+                            ),
+                          ),
+                        );
+                      },
                       child: ProductCategory(category: category),
                     );
                   },
@@ -130,7 +139,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             Container(
-              margin: const EdgeInsets.only(bottom: 10, top: 10, left: 10),
+              margin: EdgeInsets.only(bottom: 10, top: 10, left: 10),
               height: 280,
               child: ListView(
                 scrollDirection: Axis.horizontal,
@@ -140,8 +149,9 @@ class _HomeState extends State<Home> {
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) =>
-                                DetailProduct(idMeal: product.idMeal),
+                            builder: (context) => DetailProduct(
+                              idMeal: product.idMeal,
+                            ),
                           ),
                         );
                       },
@@ -162,7 +172,7 @@ class _HomeState extends State<Home> {
                   end: Alignment.centerRight,
                 ),
               ),
-              margin: const EdgeInsets.symmetric(vertical: 20),
+              margin: EdgeInsets.symmetric(vertical: 20),
               height: 300,
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Column(
@@ -192,8 +202,9 @@ class _HomeState extends State<Home> {
                               onTap: () {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                    builder: (context) =>
-                                        DetailProduct(idMeal: product.idMeal),
+                                    builder: (context) => DetailProduct(
+                                      idMeal: product.idMeal,
+                                    ),
                                   ),
                                 );
                               },
@@ -233,7 +244,7 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      bottomNavigationBar: const Navbar(),
+      bottomNavigationBar: Navbar(),
     );
   }
 }

@@ -16,54 +16,58 @@ class ProductReceomendedCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(5),
         width: 180,
+        height: 300,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+            Column(
               children: [
-                Icon(
-                  Icons.star,
-                  size: 15.0,
-                  color: Colors.yellow[700],
+                ClipRRect(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(10.0),
+                  ),
+                  child: Image.network(
+                    product.strMealThumb,
+                    width: 180,
+                  ),
                 ),
-                const Text(
-                  '(4.6)',
-                  style: TextStyle(fontSize: 10),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  product.strMeal,
+                  style: TextStyle(
+                    overflow: TextOverflow.ellipsis,
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
                 )
               ],
-            ),
-            ClipRRect(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(10.0),
-              ),
-              child: Image.network(
-                product.strMealThumb,
-                width: 180,
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              product.strMeal,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-              ),
-              textAlign: TextAlign.center,
             ),
             SizedBox(
               height: 30,
               child: Align(
                 alignment: Alignment.bottomLeft,
-                child: Text(
-                  'Rp 45k',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.star,
+                      size: 18,
+                      color: Colors.yellow[700],
+                    ),
+                    Text(
+                      '4.6',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  ],
                 ),
               ),
             ),
