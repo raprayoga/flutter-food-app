@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_food_app/models/products-filter-category.dart';
+import 'package:flutter_food_app/utlis/manipulate.dart';
 
 class ProductReceomendedCard extends StatelessWidget {
   const ProductReceomendedCard({super.key, required this.product});
   final ProductsFilterCategory product;
+
+  double get star {
+    final manipulate = Manipulate();
+    return manipulate.generateDouble(3, 5, 1);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +66,7 @@ class ProductReceomendedCard extends StatelessWidget {
                       color: Colors.yellow[700],
                     ),
                     Text(
-                      '4.6',
+                      '$star',
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.primary,
                         fontSize: 16,

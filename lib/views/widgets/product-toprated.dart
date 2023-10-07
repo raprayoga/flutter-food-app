@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_food_app/models/products-filter-category.dart';
+import 'package:flutter_food_app/utlis/manipulate.dart';
 
 class ProductTopRated extends StatelessWidget {
   const ProductTopRated({super.key, required this.product});
   final ProductsFilterCategory product;
+
+  double get star {
+    final manipulate = Manipulate();
+    return manipulate.generateDouble(3, 5, 1);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,20 +41,20 @@ class ProductTopRated extends StatelessWidget {
                   width: 70,
                   child: Card(
                     color: Theme.of(context).colorScheme.primary,
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.all(3),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.star,
                             size: 22,
                             color: Colors.white,
                           ),
                           Text(
-                            '4.6',
-                            style: TextStyle(
+                            '$star',
+                            style: const TextStyle(
                               fontSize: 14,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
